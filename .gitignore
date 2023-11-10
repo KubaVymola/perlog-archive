@@ -42,3 +42,11 @@ Thumbs.db
 
 # Next.js
 .next
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+.env
+.env.*
+!.env.sample

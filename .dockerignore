@@ -1,0 +1,6 @@
+.git/
+.next/
+.nx/
+.vscode/
+dist/
+node_modules/
