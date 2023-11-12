@@ -24,7 +24,7 @@ jobs:
                   node-version: 20.9.0
 
             - name: Install cdk
-              run: yarn global add aws-cdk
+              run: yarn
 
             - name: Configure AWS credentials
               uses: aws-actions/configure-aws-credentials@v4
