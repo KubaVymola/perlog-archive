@@ -10,6 +10,7 @@ export default async function Index() {
                 <span> Hello there, </span>
                 Welcome personal-log-app
             </h1>
+            <p>12-11-2023 15:21</p>
         </div>
     );
 }

@@ -1,13 +1,18 @@
-import path from 'path';
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
-import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecs_patterns from 'aws-cdk-lib/aws-ecs-patterns';
 
+export interface CdkStackProps extends cdk.StackProps {
+    image?: {
+        repository?: string;
+        tag?: string;
+    };
+}
+
 export class CdkStack extends cdk.Stack {
-    constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+    constructor(scope: Construct, id: string, props?: CdkStackProps) {
         super(scope, id, props);
 
         new ecs_patterns.ApplicationLoadBalancedFargateService(
@@ -16,14 +21,14 @@ export class CdkStack extends cdk.Stack {
             {
                 taskImageOptions: {
                     image: ecs.ContainerImage.fromEcrRepository(
-                        ecr.Repository.fromRepositoryArn(
+                        ecr.Repository.fromRepositoryName(
                             this,
-                            'ECR_repository',
-                            'arn:aws:ecr:eu-north-1:564339288753:repository/nextjs-test'
+                            'NextjsRepository',
+                            props?.image?.repository ?? 'nextjs-test'
                         ),
-                        'latest'
+                        props?.image?.tag ?? 'latest'
                     ),
-                    containerPort: 80,
+                    containerPort: 4200,
                 },
                 publicLoadBalancer: true,
             }

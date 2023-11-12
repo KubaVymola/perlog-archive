@@ -14,6 +14,11 @@ new CdkStack(app, 'CdkStack', {
         account: process.env.CDK_DEFAULT_ACCOUNT,
         region: process.env.CDK_DEFAULT_REGION,
     },
+    stackName: process.env.DEPLOY_ENV || 'dev',
+    image: {
+        repository: process.env.ECR_REPOSITORY,
+        tag: process.env.IMAGE_TAG,
+    },
     /* Uncomment the next line if you know exactly what Account and Region you
      * want to deploy the stack to. */
     // env: { account: '123456789012', region: 'us-east-1' },
