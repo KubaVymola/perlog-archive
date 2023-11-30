@@ -1,4 +1,4 @@
-export default async function Index() {
+export default function Page() {
     /*
      * Replace the elements below with your own.
      *
